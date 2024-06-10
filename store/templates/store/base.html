@@ -1,0 +1,121 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ product.name }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="{% static 'icons/header/cpu-setting-svgrepo-com%201.svg' %}" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.min.css' %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/font.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style-min.css' %}">
+</head>
+<body>
+    <div class="container">
+      <div class="subheader">
+        <div class="subheader__geo">
+        <img src="../../static/icons/header/GEO_SVG.svg" alt="geo">
+        </div>
+        <div class="subheader__almaty">г.Алматы, ул.Аль-фараби, 25</div>
+        <a href="{% url 'about' %}"><div class="subheader__about">О магазине</div></a>
+        <a href="{% url 'shipping' %}"><div class="subheader__delivery">Доставка и оплата</div></a>
+        <a href="{% url 'sercent' %}"><div class="subheader__service">Сервисный центр</div></a>
+      </div>
+    </div>
+
+    <header class="header">
+      <div class="container">
+        <div class="header__wrapper">
+          <a href="{% url 'index' %}">
+            <img src="../../static/icons/header/cpu-setting-svgrepo-com%201.svg" alt="logo" class="header__logo">
+            <div class="header__SM">SM comp</div>
+          </a>
+          <div class="header__search">
+            Поиск товаров
+            <img src="../../static/icons/header/glass.svg" alt="glass" class="header__glass">
+          </div>
+          <a href="{% url 'cart:favourites_detail' %}">
+            <div class="header__chosen">
+              <img src="../../static/icons/header/chosen.svg" alt="chosen" class="header__chosenimg">
+              Избранное
+            </div>
+          </a>
+          <a href="{% url 'cart:cart_detail' %}">
+            <div class="header__basket">
+                <img src="../../static/icons/header/basket.svg" alt="basket" class="header__basketimg">
+                Корзина
+            </div>
+          </a>
+          <a href="{% url 'account:user-login' %}">
+            <div class="header__cab">
+            <img src="../../static/icons/header/cab.svg" alt="cab" class="header__cabimg">
+            Кабинет
+          </div>
+          </a>
+        </div>
+        <div class="header__secwrapper">
+          <a href="{% url 'processors' %}"><div class="header__proc">Процессоры</div></a>
+          <div class="header__ssd">SSD диски</div>
+          <div class="header__videocard">Видеокарты</div>
+          <div class="header__mat">Материнкие платы</div>
+          <div class="header__bp">Блоки питания</div>
+          <div class="header__monitor">Мониторы</div>
+          <div class="header__corp">Корпуса</div>
+          <div class="header__oz">ОЗУ</div>
+          <div class="header__per">Периферия</div>
+        </div>
+      </div>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer class="footer">
+        <div class="container">
+          <div class="footer__first">
+            <div class="footer__contacts">
+              <div class="footer__h1">Контакты</div>
+              <div class="footer__h2">г.Алматы, ул.Аль-Фараби, 25</div>
+              <div class="footer__h2"><a href="tel:+ 77777075757">+ 7 ( 777 ) 707-57-57</a></div>
+            </div>
+            <div class="footer__store">
+              <div class="footer__h1">Интернет-магазин</div>
+              <a href="../static/shipping.html"><div class="footer__h2">Доставка и оплата</div></a>
+            </div>
+            <div class="footer__comp">
+              <div class="footer__h1">Компания «CMcomp»</div>
+              <a href="/src/about.html"><div class="footer__h2">О нас</div></a>
+            </div>
+            <div class="footer__support">
+              <div class="footer__h1">Помощь и поддержка</div>
+              <a href="#"><div class="footer__h2">Адреса и телефоны</div></a>
+              <a href="#"><div class="footer__h2">Написать нам</div></a>
+            </div>
+          </div>
+          <div class="footer__wrapper">
+            <div class="footer__soc">
+                <div class="footer__h1">Мы в соцсетях</div>
+                <div class="footer__icons">
+                  <img src="../static/icons/footer/instagram-2-1-logo-svgrepo-com%201.svg" alt="inst">
+                  <img src="../static/icons/footer/telegram-logo-svgrepo-com%201.svg" alt="telegram">
+                  <img src="../static/icons/footer/whatsapp-icon-logo-svgrepo-com%201.svg" alt="whatsapp">
+                </div>
+            </div>
+            <div class="footer__visa">
+                <img src="../static/icons/footer/visa-svgrepo-com%20(2)%201.svg" alt="visa">
+                <img src="../static/icons/footer/mastercard-svgrepo-com%201.svg" alt="mastercard">
+            </div>
+          </div>
+        </div>
+    </footer>
+</body>
+
+
+{% block scriptfile %}
+{% endblock %}
+</html>

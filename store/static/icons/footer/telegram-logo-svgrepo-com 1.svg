@@ -1,0 +1,21 @@
+<svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="telegram-logo-svgrepo-com 1" clip-path="url(#clip0_40_6)">
+<path id="path2995-1-0" d="M52 26C52 40.365 40.365 52 26 52C11.635 52 0 40.365 0 26C0 11.635 11.635 0 26 0C40.365 0 52 11.635 52 26Z" fill="url(#paint0_linear_40_6)"/>
+<path id="path2993" d="M21.2333 37.9167C20.3883 37.9167 20.54 37.5917 20.2367 36.79L17.7667 28.6433L33.1067 19.0667L34.905 19.5433L33.41 23.6167L21.2333 37.9167Z" fill="#C8DAEA"/>
+<path id="path2989" d="M21.2333 37.9168C21.8833 37.9168 22.165 37.6134 22.5333 37.2668C23.0967 36.7251 30.3333 29.6834 30.3333 29.6834L25.8917 28.6001L21.775 31.2001L21.2333 37.7001V37.9168Z" fill="#A9C9DD"/>
+<path id="path2991" d="M21.6667 31.2866L32.1533 39.0216C33.345 39.6716 34.2117 39.3466 34.515 37.9166L38.7833 17.8099C39.2167 16.0549 38.1117 15.2749 36.9633 15.7949L11.9167 25.4583C10.205 26.1516 10.2267 27.1049 11.6133 27.5166L18.0483 29.5316L32.9333 20.1499C33.6267 19.7166 34.2767 19.9549 33.7567 20.4316L21.6667 31.2866Z" fill="url(#paint1_linear_40_6)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_40_6" x1="33.6202" y1="8.21817" x2="20.6202" y2="38.5511" gradientUnits="userSpaceOnUse">
+<stop stop-color="#37AEE2"/>
+<stop offset="1" stop-color="#1E96C8"/>
+</linearGradient>
+<linearGradient id="paint1_linear_40_6" x1="27.948" y1="26.8135" x2="33.3647" y2="35.4802" gradientUnits="userSpaceOnUse">
+<stop stop-color="#EFF7FC"/>
+<stop offset="1" stop-color="white"/>
+</linearGradient>
+<clipPath id="clip0_40_6">
+<rect width="52" height="52" fill="white"/>
+</clipPath>
+</defs>
+</svg>

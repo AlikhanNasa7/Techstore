@@ -1,0 +1,192 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block content %}
+        <section class="proc">
+            <div class="container">
+                <h1>Процессоры</h1>
+                <div class="proc__wrapper">
+                    <div class="proc__filter">
+                        <div class="filter__company">
+                            <div class="filter__name">Производители</div>
+                            <div class="filter__data">
+                                <div class="filter__check"></div>
+                                <div class="filter__text">AMD</div>    
+                            </div>
+                            <div class="filter__data">
+                                <div class="filter__check"></div>
+                                <div class="filter__text">Intel</div>    
+                            </div>
+                        </div>
+
+                        <div class="proc__type">
+                            <div class="filter__name">Тип процессора</div>
+                            <div class="filter__data">
+                                <div class="filter__check"></div>
+                                <div class="filter__text">Ryzen 3</div>    
+                            </div>
+                            <div class="filter__data">
+                                <div class="filter__check"></div>
+                                <div class="filter__text">Ryzen 5</div>    
+                            </div>
+                            <div class="filter__data">
+                                <div class="filter__check"></div>
+                                <div class="filter__text">Ryzen 7</div>    
+                            </div>
+                            <div class="filter__data">
+                                <div class="filter__check"></div>
+                                <div class="filter__text">Core i3</div>    
+                            </div>
+                            <div class="filter__data">
+                                <div class="filter__check"></div>
+                                <div class="filter__text">Core i5</div>    
+                            </div>
+                            <div class="filter__data">
+                                <div class="filter__check"></div>
+                                <div class="filter__text">Core i7</div>    
+                            </div>
+                        </div>
+
+                        <div class="proc__core">
+                            <div class="filter__name">Общее количество ядер</div>
+                            <div class="filter__data">
+                                <div class="filter__check"></div>
+                                <div class="filter__text">2</div>    
+                            </div>
+                            <div class="filter__data">
+                                <div class="filter__check"></div>
+                                <div class="filter__text">4</div>    
+                            </div>
+                            <div class="filter__data">
+                                <div class="filter__check"></div>
+                                <div class="filter__text">6</div>    
+                            </div>
+                            <div class="filter__data">
+                                <div class="filter__check"></div>
+                                <div class="filter__text">7</div>    
+                            </div>
+                            <div class="filter__data">
+                                <div class="filter__check"></div>
+                                <div class="filter__text">8</div>    
+                            </div>
+                        </div>
+
+                        <div class="proc__power">
+                            <div class="filter__name">Расчетная мощность (TDP)</div>
+                            <div class="filter__data">
+                                <div class="filter__check"></div>
+                                <div class="filter__text">35 Вт</div>    
+                            </div>
+                            <div class="filter__data">
+                                <div class="filter__check"></div>
+                                <div class="filter__text">45 Вт</div>    
+                            </div>
+                            <div class="filter__data">
+                                <div class="filter__check"></div>
+                                <div class="filter__text">51 Вт</div>    
+                            </div>
+                            <div class="filter__data">
+                                <div class="filter__check"></div>
+                                <div class="filter__text">58 Вт</div>    
+                            </div>
+                            <div class="filter__data">
+                                <div class="filter__check"></div>
+                                <div class="filter__text">60 Вт</div>    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="proc__goods">
+                        {% for processor in page_obj %}
+                        <div class="goods__el">
+                            <div class="goods__white">
+                                <a href="{% url 'product' product_id=processor.id %}">
+                                    <div class="goods__img"><img src="../static/img/main/image%201.png" alt="proc"></div>
+                                    <div class="goods__descr">
+                                        <div class="goods__name">{{ processor.name}}</div>
+                                        <div class="goods__wrapper">
+                                            <div class="goods__param">
+                                                <div class="param__type">
+                                                    <div class="param__cell">Тип процессора</div>                                      
+                                                </div>
+                                                <div class="param__socket">
+                                                    <div class="param__cell">Сокет</div>                                        
+                                                </div>
+                                                <div class="param__core">
+                                                    <div class="param__cell">Общее количество ядер</div>                                       
+                                                </div>
+                                                <div class="param__stream">
+                                                    <div class="param__cell">Количество потоков</div>                                        
+                                                </div>
+                                                <div class="param__frequency">
+                                                    <div class="param__cell">Тактовая частота, ГГц</div>                                      
+                                                </div>
+                                                <div class="param__micro">
+                                                    <div class="param__cell">Микроархитектура</div>
+                                                </div>
+                                            </div>
+                                            <div class="goods__data">
+                                                {% for product_value in processor.product_values.all%}
+                                                    <div class="data__data">{{ product_value.value }}</div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="goods__blue">
+                                <div class="blue__chosen">
+                                    <form action="{% url 'cart:add-to-favourites' processor.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <button><img src="../static/icons/proc/Vector_4.svg" alt="like"></button>
+                                    </form>
+                                </div>
+                                <div class="blue__avail">
+                                    ✓  В наличии
+                                </div>
+                                <div class="blue__selfdel">
+                                    <img src="../static/icons/proc/purchase-cash-register-svgrepo-com%201.svg" alt="purch" class="blue__img">
+                                    <div class="blue__text">Самовывоз: сегодня</div>
+                                </div>
+                                <div class="blue__del">
+                                    <img src="../static/icons/proc/delivery-shipping-and-delivery-svgrepo-com%202.svg" alt="del" class="blue__img">
+                                    <div class="blue__text">Доставка: завтра</div>
+                                </div>
+                                <div class="blue__buy">
+                                    <div class="blue__price">{{ processor.price }} ₸</div>
+                                    <div class="blue__buttons">
+                                        <button class="blue__oneclick">
+                                            <img src="../static/icons/proc/basket-commerce-and-shopping-svgrepo-com%201.svg" alt="one">
+                                            <div class="button_text">В один клик</div>
+                                        </button>
+                                        <form action="{% url 'cart:add-to-cart' processor.id %}" method="POST">
+                                            {% csrf_token %}
+                                            <button class="blue__basket">
+                                                <img src="../static/icons/proc/cart-commerce-and-shopping-svgrepo-com%201%20(1).svg" alt="cart">
+                                                <div class="button__text">В коризну</div>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                        <div class="proc__links">
+
+                            {% for page_num in page_range %}
+                                {% if page_num == page_obj.number %}
+                                    <span class="current">
+                                        <div class="links__pagenmb">{{ page_num }}</div>
+                                    </span>
+                                {% else %}
+                                    <a href="?page={{ page_num }}">
+                                        <div class="links__pagenmb">{{ page_num }}</div>
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+
+                        </div>
+                    </div>           
+                </div>
+            </div>
+        </section>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'store/base.html' %}
+{% block content %}
+  <section class="booking">
+    <div class="container">
+        <div class="booking__h">Оформление заказа</div>
+        <div class="form">
+            <div class="form__hh">Заказчик</div>
+            <div class="booking__wrap">
+                <div class="booking__del">
+                    <div class="del__input">Ваше имя</div>
+                    <div class="del__text">Данные доставки</div>
+                    <div class="del__form">
+                        <div class="formm__text">
+                            Выберите способ доставки:
+                        </div>
+                        <div class="formm__block">
+                            <div class="filter__check"></div>
+                            <div class="block__text">Курьером</div>
+                        </div>
+                        <div class="formm__block">
+                            <div class="filter__check"></div>
+                            <div class="block__text">Курьером</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="booking__pay">
+                    <div class="del__input">Номер телефона</div>
+                    <div class="del__text">Даннные оплаты</div>
+                    <div class="del__form">
+                        <div class="formm__text">
+                            Выберите способ оплаты:
+                        </div>
+                        <div class="formm__block">
+                            <div class="filter__check"></div>
+                            <div class="block__text">При получении</div>
+                        </div>
+                        <div class="formm__block">
+                            <div class="filter__check"></div>
+                            <div class="block__text">Картой</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="del__input">Введите адрес</div>
+            <div class="book__wrapper">
+                <div class="purchase__price">
+                    <div class="purchase__text">Общая стоимость: {{ total_price }}</div>
+                    <div class="purchase__exodus"></div>
+                </div>
+                <div class="purchase__button">
+                    <a href="{% url 'cart:booking' %}"><button>Оформить заказ</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+{% endblock %}

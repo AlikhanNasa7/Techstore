@@ -1,0 +1,82 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block content %}
+  <section class="chosen">
+    <div class="container">
+        <h1>Избранное</h1>
+        {% for favourite_item in favourite_items %}
+            <div class="chosen__wrapper">
+                <div class="proc__goods">
+                    <div class="goods__el">
+                        <div class="goods__white">
+                            <a href="product.html">
+                                <div class="goods__img"><img src="../../static/img/main/image%201.png" alt="proc"></div>
+                                <div class="goods__descr">
+                                    <div class="goods__name">{{ favourite_item.product.name }}</div>
+                                    <div class="goods__wrapper">
+                                        <div class="goods__param">
+                                            <div class="param__type">
+                                                <div class="param__cell">Тип процессора</div>
+                                            </div>
+                                            <div class="param__socket">
+                                                <div class="param__cell">Сокет</div>
+                                            </div>
+                                            <div class="param__core">
+                                                <div class="param__cell">Общее количество ядер</div>
+                                            </div>
+                                            <div class="param__stream">
+                                                <div class="param__cell">Количество потоков</div>
+                                            </div>
+                                            <div class="param__frequency">
+                                                <div class="param__cell">Тактовая частота, ГГц</div>
+                                            </div>
+                                            <div class="param__micro">
+                                                <div class="param__cell">Микроархитектура</div>
+                                            </div>
+                                        </div>
+                                        <div class="goods__data">
+                                            {% for product_value in favourite_item.product.product_values.all%}
+                                                    <div class="data__data">{{ product_value.value }}</div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="goods__blue">
+                            <div class="blue__chosen">
+                                <button><img src="../../static/icons/chosen/Vector_3.svg" alt="like"></button>
+                            </div>
+                            <div class="blue__avail">
+                                ✓  В наличии
+                            </div>
+                            <div class="blue__selfdel">
+                                <img src="../../static/icons/proc/purchase-cash-register-svgrepo-com%201.svg" alt="purch" class="blue__img">
+                                <div class="blue__text">Самовывоз: сегодня</div>
+                            </div>
+                            <div class="blue__del">
+                                <img src="../../static/icons/proc/delivery-shipping-and-delivery-svgrepo-com%202.svg" alt="del" class="blue__img">
+                                <div class="blue__text">Доставка: завтра</div>
+                            </div>
+                            <div class="blue__buy">
+                                <div class="blue__price">{{ favourite_item.product.price }} ₸</div>
+                                <div class="blue__buttons">
+                                    <button class="blue__oneclick">
+                                        <img src="../../static/icons/proc/basket-commerce-and-shopping-svgrepo-com%201.svg" alt="one">
+                                        <div class="button_text">В один клик</div>
+                                    </button>
+                                    <button class="blue__basket">
+                                        <img src="../../static/icons/proc/cart-commerce-and-shopping-svgrepo-com%201%20(1).svg" alt="cart">
+                                        <div class="button__text">В коризну</div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+  </section>
+
+{% endblock %}

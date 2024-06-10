@@ -1,0 +1,126 @@
+{% extends 'store/base.html' %}
+{% block content %}
+    <section class="product">
+        <div class="container">
+          <div class="head">{{ product.name}}</div>
+          <div class="product__main">
+            <div class="main__img"><img src="{{ product.image.url }}" alt="proc"></div>
+            <div class="main__list">
+              <ul>
+                {% for product_value in product.product_values.all%}
+                    <li>{{ product_value.attribute.name }}: {{ product_value.value }}</li>
+                {% endfor %}
+                <a href="https://www.amd.com/en/products/processors/ryzen-for-creators.html">Все характеристики</a>
+              </ul>
+            </div>
+            <div class="main__wrapper">
+              <div class="main__acquisition">
+                <div class="acquisition__avail">✓ В наличии</div>
+                <div class="acquisition__price">{{ product.price }} ₸</div>
+                {% if is_in_cart %}
+                    <button onclick="toCart()">Уже в корзине</button>
+                  {% else %}
+                    <form action="{% url 'cart:add-to-cart' product.id %}" method="POST">
+                        {% csrf_token %}
+                        <button>В корзину</button>
+                    </form>
+                {% endif %}
+                <button>Заказать в один клик</button>
+                <a href="#">
+                  <div class="acquisition__del">
+                    <img src="../../static/icons/goods/Group%202.svg" alt="del">
+                    <div class="acquisition__text">Доставка и оплата</div>
+                  </div>
+                </a>
+              </div>
+              <div class="main__gua">
+                <div class="gua__img"><img src="../../static/icons/goods/Group.svg" alt=""></div>
+                <div class="gua__text">
+                    <div class="gua__textt">Гарантия</div>
+                    <div class="gua__textt">12 месяцев</div>
+                </div>
+              </div>
+              <div class="main__gua">
+                <div class="gua__img"><img src="../../static/icons/goods/Group.svg" alt=""></div>
+                <div class="gua__text">
+                    <div class="gua__textt">Гарантия</div>
+                    <div class="gua__textt">12 месяцев</div>
+                </div>
+              </div>
+            </div>  
+          </div>
+          <div class="product__descr">
+            {{ product.description }}
+          </div>
+          <div class="product__descr1">
+            <div class="descr2__head">Общие параметры</div>
+            <div class="descr2__wrapper">
+              <div class="descr2__cell">
+                <div class="cell__name">Модель</div>
+                <div class="cell__line"></div>
+                <div class="cell__name">Сокет</div>
+                <div class="cell__line"></div>
+                <div class="cell__name">Год релиза</div>
+                <div class="cell__line"></div>
+                <div class="cell__name">Сайт производителя</div>
+                <div class="cell__line"></div>
+              </div>
+              <div class="descr2__data">
+                <div class="data__value">AMD Ryzen 9 7900X3D </div>
+                <div class="data__value">AM5</div>
+                <div class="data__value">2023</div>
+                <div class="data__value">amd.com</div> 
+              </div>
+            </div>
+          </div>
+          <div class="product__descr2">
+            <div class="descr2__head">Ядро и архитектура</div>
+            <div class="descr2__wrapper">
+              <div class="descr2__cell">
+                <div class="cell__name">Общие количество ядер</div>
+                <div class="cell__line"></div>
+                <div class="cell__name">Количество производительных ядер</div>
+                <div class="cell__line"></div>
+                <div class="cell__name">Количество энергоэффективных ядер</div>
+                <div class="cell__line"></div>
+              </div>
+              <div class="descr1__data">
+                <div class="data__value">12</div>
+                <div class="data__value">12</div>
+                <div class="data__value">нет</div>
+              </div>
+            </div>
+          </div>
+          <div class="product__descr3">
+            <div class="descr2__head">Параметры оперативной памяти</div>
+            <div class="descr2__wrapper">
+              <div class="descr2__cell">
+                <div class="cell__name">Тип памяти</div>
+                <div class="cell__line"></div>
+                <div class="cell__name">Максимально поддерживаемый объем памяти</div>
+                <div class="cell__line"></div>
+                <div class="cell__name">Количество каналов</div>
+                <div class="cell__line"></div>
+                <div class="cell__name">Частота оперативной памяти</div>
+                <div class="cell__line"></div>
+              </div>
+              <div class="descr3__data">
+                <div class="data__value">DDR5</div>
+                <div class="data__value">128 ГБ</div>
+                <div class="data__value">2</div>
+                <div class="data__value">amd.com</div> 
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block scriptfile %}
+    <script>
+        function toCart(){
+            window.location.href = '/cart/cart'
+        }
+
+    </script>
+{% endblock %}

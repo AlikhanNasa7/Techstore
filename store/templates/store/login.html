@@ -1,0 +1,30 @@
+
+{% extends "store/base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}Log-in{% endblock %}
+
+
+{% block content %}
+<section class="enter">
+        <div class="container">
+            <div class="enter__flex">
+                <form method="POST">
+                    <div class="enter__h">Личный кабинет</div>
+                    {% csrf_token %}
+
+                    {{ form.username|as_crispy_field }}
+                    <br>
+                    {{ form.password|as_crispy_field }}
+                    <br>
+                    <div class="enter__wrapp">
+                      <button>Забыли пароль ?</button>
+                      <button><a href="{% url 'account:register' %}">Зарегистрироваться</a></button>
+                    </div>
+                    <br>
+                    <button class="blue">Войти</button>
+                </form>
+
+            </div>
+        </div>
+</section>
+{% endblock %}
