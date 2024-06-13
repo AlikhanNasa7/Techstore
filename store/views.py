@@ -101,9 +101,48 @@ def remove_from_cart(request, product_id):
     return JsonResponse({'status': 'success', 'message': 'CartItem has been deleted from your cart'})
 
 
-def processors(request):
-    products = Product.objects.filter(product_type__name='Processor')
-    paginator = Paginator(products, 2)
+def product_type(request, product_type):
+    reformat_type = {
+        'processors': 'Processor',
+        'ssd-disks': 'SSDdisk',
+        'videocards': 'Videocard',
+        'motherboards': 'matPLat',
+        'power-supplies': 'powerBlock',
+        'monitors': 'Monitor',
+        'cases': 'corpus',
+        'rams': 'ozy',
+        'peripherals': 'peref'
+    }
+    titles = {
+        'processors': 'Процессоры',
+        'ssd-disks': 'Диски',
+        'videocards': 'Видеокарты',
+        'motherboards': 'Материнские платы',
+        'power-supplies': 'Блоки питания',
+        'monitors': 'Мониторы',
+        'cases': 'Корпуса',
+        'rams': 'ОЗУ',
+        'peripherals': 'Периферия'
+    }
+    short_parameters = {
+        'processors': {'show_names': ['Тип процессора','Сокет','Общее количество ядер','Количество потоков','Тактовая частота, ГГц','Микроархитектура'],
+                       'db_names': ['Тип процессора','Сокет','Общее количество ядер','Количество потоков','Тактовая частота, ГГц','Микроархитектура']
+                       },
+        'ssd-disks': 'Диски',
+        'videocards': 'Видеокарты',
+        'motherboards': 'Материнские платы',
+        'power-supplies': 'Блоки питания',
+        'monitors': 'Мониторы',
+        'cases': 'Корпуса',
+        'rams': 'ОЗУ',
+        'peripherals': 'Периферия'
+    }
+
+    title = titles[product_type]
+    parameters = short_parameters[product_type]
+
+    products = Product.objects.filter(product_type__name=reformat_type[product_type])
+    paginator = Paginator(products, 5)
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -115,7 +154,9 @@ def processors(request):
     end_page = min(current_page + 1, total_pages)
 
     page_range = range(start_page, end_page + 1)
-    return render(request, 'store/processors.html', {'page_obj': page_obj, 'page_range': page_range})
+
+    return render(request, 'store/products_by_type.html',
+                  {'page_obj': page_obj, 'page_range': page_range, 'title': title, 'parameters': parameters})
 
 
 def product(request, product_id):
@@ -133,43 +174,6 @@ def product(request, product_id):
     return render(request, 'store/product.html', {'product': curr_product, 'is_in_cart': is_in_cart})
 
 
-def ssd_disks(request):
-    products = Product.objects.filter(product_type__name='Processor')
-    return render(request, 'store/ssd_disks.html', {'processors': products})
 
-
-def video_carts(request):
-    products = Product.objects.filter(product_type__name='Processor')
-    return render(request, 'store/processors.html', {'processors': products})
-
-
-def motherboards(request):
-    products = Product.objects.filter(product_type__name='SSD Disk')
-    return render(request, 'store/processors.html', {'processors': products})
-
-
-def power_supplies(request):
-    products = Product.objects.filter(product_type__name='Power Supply')
-    return render(request, 'store/processors.html', {'processors': products})
-
-
-def monitors(request):
-    products = Product.objects.filter(product_type__name='Monitor')
-    return render(request, 'store/processors.html', {'processors': products})
-
-
-def cases(request):
-    products = Product.objects.filter(product_type__name='Case')
-    return render(request, 'store/processors.html', {'processors': products})
-
-
-def rams(request):
-    products = Product.objects.filter(product_type__name='RAM')
-    return render(request, 'store/processors.html', {'processors': products})
-
-
-def peripherals(request):
-    products = Product.objects.filter(product_type__name='Peripheral')
-    return render(request, 'store/processors.html', {'processors': products})
 
 

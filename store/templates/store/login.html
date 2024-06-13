@@ -8,7 +8,7 @@
 <section class="enter">
         <div class="container">
             <div class="enter__flex">
-                <form method="POST">
+                <form method="POST" action="{% url 'account:user-login' %}">
                     <div class="enter__h">Личный кабинет</div>
                     {% csrf_token %}
 
@@ -21,7 +21,7 @@
                       <button><a href="{% url 'account:register' %}">Зарегистрироваться</a></button>
                     </div>
                     <br>
-                    <button class="blue">Войти</button>
+                    <button class="blue" type="submit">Войти</button>
                 </form>
 
             </div>

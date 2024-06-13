@@ -6,19 +6,13 @@ from Techstore import settings
 from . import views
 urlpatterns = [
     path('', views.index, name='index'),
-    path('processors/', views.processors, name='processors'),
     path('product/<int:product_id>/', views.product, name='product'),
-    path('ssd-disks/', views.ssd_disks, name='ssd-disks'),
-    path('video-carts/', views.video_carts, name='video-carts'),
-    path('motherboards/', views.motherboards, name='motherboards'),
-    path('power-supplies/', views.power_supplies, name='power-supplies'),
-    path('monitors/', views.monitors, name='monitors'),
-    path('cases/', views.cases, name='cases'),
-    path('rams/', views.rams, name='rams'),
-    path('peripherals/', views.peripherals, name='peripherals'),
+    #
     path('about/', views.about, name='about'),
     path('shipping/', views.shipping, name='shipping'),
     path('sercent/', views.sercent, name='sercent'),
+    #
+    path('<str:product_type>/', views.product_type, name='product_type'),
 ]
 
 

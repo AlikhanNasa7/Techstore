@@ -3,7 +3,7 @@
 {% block content %}
         <section class="proc">
             <div class="container">
-                <h1>Процессоры</h1>
+                <h1>{{ title }}</h1>
                 <div class="proc__wrapper">
                     <div class="proc__filter">
                         <div class="filter__company">
@@ -95,37 +95,24 @@
                         </div>
                     </div>
                     <div class="proc__goods">
-                        {% for processor in page_obj %}
-                        <div class="goods__el">
+                        {% for product in page_obj %}
+                        <div class="goods__el" style="width: fit-content">
                             <div class="goods__white">
-                                <a href="{% url 'product' product_id=processor.id %}">
-                                    <div class="goods__img"><img src="../static/img/main/image%201.png" alt="proc"></div>
+                                <a href="{% url 'product' product_id=product.id %}">
+                                    <div class="goods__img"><img src="{{ product.image.url }}" alt="proc" style="width: 175px"></div>
                                     <div class="goods__descr">
-                                        <div class="goods__name">{{ processor.name}}</div>
+                                        <div class="goods__name">{{ product.name}}</div>
                                         <div class="goods__wrapper">
                                             <div class="goods__param">
-                                                <div class="param__type">
-                                                    <div class="param__cell">Тип процессора</div>                                      
-                                                </div>
-                                                <div class="param__socket">
-                                                    <div class="param__cell">Сокет</div>                                        
-                                                </div>
-                                                <div class="param__core">
-                                                    <div class="param__cell">Общее количество ядер</div>                                       
-                                                </div>
-                                                <div class="param__stream">
-                                                    <div class="param__cell">Количество потоков</div>                                        
-                                                </div>
-                                                <div class="param__frequency">
-                                                    <div class="param__cell">Тактовая частота, ГГц</div>                                      
-                                                </div>
-                                                <div class="param__micro">
-                                                    <div class="param__cell">Микроархитектура</div>
-                                                </div>
+                                                {% for parameter in parameters.show_names %}
+                                                    <div class="param">
+                                                        <div class="param__cell">{{ parameter }}</div>
+                                                    </div>
+                                                {% endfor %}
                                             </div>
                                             <div class="goods__data">
-                                                {% for product_value in processor.product_values.all%}
-                                                    <div class="data__data">{{ product_value.value }}</div>
+                                                {% for parameter in parameters.db_names %}
+                                                    <div class="data__data">{{ product.parameter }}</div>
                                                 {% endfor %}
                                             </div>
                                         </div>
@@ -134,7 +121,7 @@
                             </div>
                             <div class="goods__blue">
                                 <div class="blue__chosen">
-                                    <form action="{% url 'cart:add-to-favourites' processor.id %}" method="POST">
+                                    <form action="{% url 'cart:add-to-favourites' product.id %}" method="POST">
                                         {% csrf_token %}
                                         <button><img src="../static/icons/proc/Vector_4.svg" alt="like"></button>
                                     </form>
@@ -151,13 +138,13 @@
                                     <div class="blue__text">Доставка: завтра</div>
                                 </div>
                                 <div class="blue__buy">
-                                    <div class="blue__price">{{ processor.price }} ₸</div>
+                                    <div class="blue__price">{{ product.price }} ₸</div>
                                     <div class="blue__buttons">
                                         <button class="blue__oneclick">
                                             <img src="../static/icons/proc/basket-commerce-and-shopping-svgrepo-com%201.svg" alt="one">
                                             <div class="button_text">В один клик</div>
                                         </button>
-                                        <form action="{% url 'cart:add-to-cart' processor.id %}" method="POST">
+                                        <form action="{% url 'cart:add-to-cart' product.id %}" method="POST">
                                             {% csrf_token %}
                                             <button class="blue__basket">
                                                 <img src="../static/icons/proc/cart-commerce-and-shopping-svgrepo-com%201%20(1).svg" alt="cart">

@@ -14,6 +14,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="{% static 'css/font.css' %}">
   <link rel="stylesheet" href="{% static 'css/style-min.css' %}">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
 </head>
 <body>
     <div class="container">
@@ -27,7 +29,7 @@
         <a href="{% url 'sercent' %}"><div class="subheader__service">Сервисный центр</div></a>
       </div>
     </div>
-
+{% block header %}
     <header class="header">
       <div class="container">
         <div class="header__wrapper">
@@ -51,30 +53,40 @@
                 Корзина
             </div>
           </a>
-          <a href="{% url 'account:user-login' %}">
-            <div class="header__cab">
-            <img src="../../static/icons/header/cab.svg" alt="cab" class="header__cabimg">
-            Кабинет
-          </div>
-          </a>
+          {% if is_user_authenticated %}
+              <a href="{% url 'account:profile' %}">
+                  <div class="header__cab">
+                    <img src="../../static/icons/header/cab.svg" alt="cab" class="header__cabimg">
+                    Профиль
+                </div>
+              </a>
+            {% else %}
+              <a href="{% url 'account:user-login' %}">
+                <div class="header__cab">
+                    <img src="../../static/icons/header/cab.svg" alt="cab" class="header__cabimg">
+                    Войти
+                </div>
+              </a>
+          {% endif %}
         </div>
         <div class="header__secwrapper">
-          <a href="{% url 'processors' %}"><div class="header__proc">Процессоры</div></a>
-          <div class="header__ssd">SSD диски</div>
-          <div class="header__videocard">Видеокарты</div>
-          <div class="header__mat">Материнкие платы</div>
-          <div class="header__bp">Блоки питания</div>
-          <div class="header__monitor">Мониторы</div>
-          <div class="header__corp">Корпуса</div>
-          <div class="header__oz">ОЗУ</div>
-          <div class="header__per">Периферия</div>
+            <a href="{% url 'product_type' product_type='processors' %}"><div class="header__proc">Процессоры</div></a>
+            <a href="{% url 'product_type' product_type='ssd-disks' %}"><div class="header__ssd">SSD диски</div></a>
+            <a href="{% url 'product_type' product_type='videocards' %}"><div class="header__videocard">Видеокарты</div></a>
+            <a href="{% url 'product_type' product_type='motherboards' %}"><div class="header__mat">Материнкие платы</div></a>
+            <a href="{% url 'product_type' product_type='power-supplies' %}"><div class="header__bp">Блоки питания</div></a>
+            <a href="{% url 'product_type' product_type='monitors' %}"><div class="header__monitor">Мониторы</div></a>
+            <a href="{% url 'product_type' product_type='cases' %}"><div class="header__corp">Корпуса</div></a>
+            <a href="{% url 'product_type' product_type='rams' %}"><div class="header__oz">ОЗУ</div></a>
+            <a href="{% url 'product_type' product_type='peripherals' %}"><div class="header__per">Периферия</div></a>
         </div>
       </div>
     </header>
+{% endblock %}
 
     {% block content %}
     {% endblock %}
-
+{% block footer %}
     <footer class="footer">
         <div class="container">
           <div class="footer__first">
@@ -101,21 +113,21 @@
             <div class="footer__soc">
                 <div class="footer__h1">Мы в соцсетях</div>
                 <div class="footer__icons">
-                  <img src="../static/icons/footer/instagram-2-1-logo-svgrepo-com%201.svg" alt="inst">
-                  <img src="../static/icons/footer/telegram-logo-svgrepo-com%201.svg" alt="telegram">
-                  <img src="../static/icons/footer/whatsapp-icon-logo-svgrepo-com%201.svg" alt="whatsapp">
+                  <img src="{% static 'icons/footer/instagram-2-1-logo-svgrepo-com%201.svg' %}" alt="inst">
+                  <img src="{% static 'icons/footer/telegram-logo-svgrepo-com%201.svg' %}" alt="telegram">
+                  <img src="{% static 'icons/footer/whatsapp-icon-logo-svgrepo-com%201.svg' %}" alt="whatsapp">
                 </div>
             </div>
             <div class="footer__visa">
-                <img src="../static/icons/footer/visa-svgrepo-com%20(2)%201.svg" alt="visa">
-                <img src="../static/icons/footer/mastercard-svgrepo-com%201.svg" alt="mastercard">
+                <img src="{% static 'icons/footer/visa-svgrepo-com%20(2)%201.svg' %}" alt="visa">
+                <img src="{% static 'icons/footer/mastercard-svgrepo-com%201.svg' %}" alt="mastercard">
             </div>
           </div>
         </div>
     </footer>
-</body>
-
-
+{% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 {% block scriptfile %}
 {% endblock %}
+</body>
 </html>

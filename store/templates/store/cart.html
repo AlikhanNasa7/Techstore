@@ -10,7 +10,7 @@
                         <button><img src="../../static/icons/basket/basket-commerce-and-shopping-svgrepo-com%202.svg" alt="delete"></button>
                     </div>
                     <a href="{% url 'product' product_id=cart_item.product.id %}">
-                    <div class="el__img"><img src="../../static/img/main/image%201.png" alt="img"></div>
+                    <div class="el__img"><img src="{{ cart_item.product.image.url }}" alt="img" style="width: 175px"></div>
                     <div class="el__descr">
                         <div class="el__name">{{ cart_item.product.name }}</div>
                         <div class="el__arc">Артикул: 000001</div>

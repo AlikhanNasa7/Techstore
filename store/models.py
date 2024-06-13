@@ -4,6 +4,8 @@ from django.conf import settings
 
 from django.contrib.auth.models import User
 
+import cart
+
 
 # Create your models here.
 
@@ -54,6 +56,9 @@ class Cart(models.Model):
     def __str__(self):
         return f"Cart {self.id} for {self.user.email}"
 
+    def __iter__(self):
+        return iter(self.items.all())
+
 
 class Favourites(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='favourites')
@@ -78,11 +83,28 @@ class CartItem(models.Model):
 
 
 class Order(models.Model):
+    class Delivery(models.TextChoices):
+        courier = 'Courier'
+        pickup = 'Pickup'
+
+    class Payment(models.TextChoices):
+        card = 'Card', 'card'
+        cash = 'Cash', 'cash'
+
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
+    name = models.CharField(max_length=100, default='')
+    address = models.CharField(max_length=100, default='')
+    phone_number = models.CharField(max_length=100, default='')
+    delivery_option = models.CharField(max_length=100, choices=Delivery.choices, default=Delivery.courier)
+    payment_option = models.CharField(max_length=100, choices=Payment.choices, default=Payment.card)
+    #above user data
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     status = models.BooleanField(default=True)
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return f"{self.id}: {self.user}"
 
 
 class OrderItem(models.Model):

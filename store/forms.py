@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 
 
+#now forms from account_app are used
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, ProductType, ProductAttribute, ProductAttributeValue, CartItem, Cart
+from .models import Product, ProductType, ProductAttribute, ProductAttributeValue, CartItem, Cart, Order, OrderItem
 
 
 # Register your models here.
@@ -21,6 +21,11 @@ class ProductAttributeInline(admin.TabularInline):
     extra = 1
 
 
+class OrderItemInline(admin.TabularInline):
+    model = OrderItem
+    extra = 1
+
+
 class ProductTypeAdmin(admin.ModelAdmin):
     list_display = ('name',)
     inlines = [ProductAttributeInline]
@@ -33,6 +38,7 @@ class CategoryAdmin(admin.ModelAdmin):
 # ProductAttribute Admin
 class ProductAttributeAdmin(admin.ModelAdmin):
     list_display = ('name', 'product_type')
+    list_filter = ('product_type',)
 
 
 # ProductAttributeValue Admin
@@ -46,13 +52,26 @@ class CartItemInline(admin.TabularInline):
     model = CartItem
     extra = 1
 
+
 class CartAdmin(admin.ModelAdmin):
     list_display = ('user', 'created_at')
     inlines = [CartItemInline]
 
+
 class CartItemAdmin(admin.ModelAdmin):
     list_display = ('cart', 'product', 'quantity')
     search_fields = ('cart__user__username', 'product__name')
+
+
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('user', 'name', 'address', 'phone_number', 'status', 'total_price', 'created_at')
+    list_filter = ('status', 'created_at')
+    inlines = [OrderItemInline]
+
+
+class OrderItemAdmin(admin.ModelAdmin):
+    list_display = ('order', 'product', 'quantity', 'price')
+    search_fields = ('price', 'product__name', 'order__created_at')
 
 
 admin.site.register(Product, ProductAdmin)
@@ -61,3 +80,5 @@ admin.site.register(ProductAttribute, ProductAttributeAdmin)
 admin.site.register(ProductAttributeValue, ProductAttributeValueAdmin)
 admin.site.register(Cart, CartAdmin)
 admin.site.register(CartItem, CartItemAdmin)
+admin.site.register(Order, OrderAdmin)
+admin.site.register(OrderItem, OrderItemAdmin)

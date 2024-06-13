@@ -1,32 +1,47 @@
 {% extends 'store/base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
   <section class="reg">
     <div class="container">
         <div class="reg__wrap">
             <div class="reg__h">Личный кабинет</div>
-            <div class="reg__main">
-                <div class="main__h">Имя</div>
-                <form action="">
-                    <input type="text">
-                </form>
-            </div>
-            <div class="reg__main">
-                <div class="main__h">Логин</div>
-                <form action="">
-                    <input type="text">
-                </form>
-            </div>
-            <div class="reg__main">
-                <div class="main__h">Пароль</div>
-                <form action="">
-                    <input type="text">
-                </form>
-            </div>
-            <button class="reg__btn">
-                Зарегистрироваться
-            </button>
+            <form method="POST" action="{% url 'account:register' %}">
+                {% csrf_token %}
+                <div class="reg__main">
+                    {{ form.first_name|as_crispy_field }}
+                </div>
+                <div class="reg__main">
+                    {{ form.last_name|as_crispy_field }}
+                </div>
+                <div class="reg__main">
+                    {{ form.username|as_crispy_field }}
+                </div>
+                <div class="reg__main">
+                    {{ form.email|as_crispy_field }}
+                </div>
+                <div class="reg__main">
+                    {{ form.password1|as_crispy_field }}
+                </div>
+                <div class="reg__main">
+                    {{ form.password2|as_crispy_field }}
+                </div>
+                <button class="reg__btn" type="submit">
+                    Зарегистрироваться
+                </button>
+                <button class="reg__btn" type="button" onclick="toLoginPage()">
+                    Уже есть аккаунт
+                </button>
+            </form>
         </div>
     </div>
   </section>
+{% endblock %}
+
+{% block scriptfile %}
+    <script>
+        function toLoginPage(){
+            window.location.href = '/account/login'
+        }
+    </script>
 {% endblock %}
 

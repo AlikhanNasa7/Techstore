@@ -25,8 +25,30 @@ SECRET_KEY = 'django-insecure-@jj)%&*0209gjc^e6h_g9fir--n%hm*2uph0#b@lgy(f6)3370
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.1.2']
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'PATCH',
+    'DELETE',
+    'OPTIONS',
+]
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+
+DOMAIN_URL = 'http://127.0.0.1:8000'
 
 
 # Application definition
@@ -70,6 +92,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'account.context_processors.user_status',
             ],
         },
     },
@@ -141,4 +164,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+STRIPE_PUBLIC_KEY = 'pk_test_51PQpeB09YDBQc1tNt8H1dHO0tx8hT1lPRtqhsY7kpVIh7ey9WjADcz4j53mvnnO6bz4QgIN5VRGHlC5Mk3Dj3i7s00S9vKPdt9'
+STRIPE_SECRET_KEY = 'sk_test_51PQpeB09YDBQc1tNARUfpk6EOCwn942nmFFccxs9IFwVRcpp5pqI5biyr2CGEucHYr0wnk0jfRYTObK9oRQQ65nA00gcSnn8LY'
 
