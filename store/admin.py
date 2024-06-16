@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Product, ProductType, ProductAttribute, ProductAttributeValue, CartItem, Cart, Order, OrderItem
+from .models import (Product, ProductType, ProductAttribute,
+                     ProductAttributeValue, CartItem, Cart, Order, OrderItem, Brand)
 
 
 # Register your models here.
@@ -10,9 +11,9 @@ class ProductAttributeValueInline(admin.TabularInline):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'product_type', 'price', 'stock')
-    list_filter = ('price', 'product_type')
-    search_fields = ('name', 'description', 'product_type')
+    list_display = ('name', 'product_type', 'price', 'stock', )
+    list_filter = ('price', 'product_type', 'brand')
+    search_fields = ('name', 'description', 'product_type', 'brand')
     inlines = [ProductAttributeValueInline]
 
 
@@ -74,6 +75,11 @@ class OrderItemAdmin(admin.ModelAdmin):
     search_fields = ('price', 'product__name', 'order__created_at')
 
 
+class BrandAdmin(admin.ModelAdmin):
+    list_display = ('name', 'created_at')
+    list_filter = ('name',)
+
+
 admin.site.register(Product, ProductAdmin)
 admin.site.register(ProductType, ProductTypeAdmin)
 admin.site.register(ProductAttribute, ProductAttributeAdmin)
@@ -82,3 +88,4 @@ admin.site.register(Cart, CartAdmin)
 admin.site.register(CartItem, CartItemAdmin)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(OrderItem, OrderItemAdmin)
+admin.site.register(Brand, BrandAdmin)

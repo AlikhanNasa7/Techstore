@@ -44,7 +44,7 @@
         <img src="../../static/img/about/image%202.png" alt="">
         <div class="kazaktelecom"><img src="../../static/img/about/image%204.png" alt=""></div>
       </div>
-      <div class="trust__contact">
+      <div class="trust__contact" id="qwerty">
         <div class="contact__hh">Контактная информация</div>
         <div class="contact__wrap">
           <div class="contact__main">
@@ -63,3 +63,19 @@
     </div>
   </section>
   {% endblock %}
+
+{% block scriptfile %}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash;
+
+            if (hash) {
+                const target = document.querySelector(hash);
+                if (target) {
+                    // Scroll to the target element smoothly
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        });
+    </script>
+{% endblock %}

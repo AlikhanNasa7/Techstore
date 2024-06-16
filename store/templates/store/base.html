@@ -23,7 +23,7 @@
         <div class="subheader__geo">
         <img src="../../static/icons/header/GEO_SVG.svg" alt="geo">
         </div>
-        <div class="subheader__almaty">г.Алматы, ул.Аль-фараби, 25</div>
+        <a href="https://maps.app.goo.gl/CSkY5FSECkhyjHBZ6"><div class="subheader__almaty">г.Алматы, ул.Аль-фараби, 25</div></a>
         <a href="{% url 'about' %}"><div class="subheader__about">О магазине</div></a>
         <a href="{% url 'shipping' %}"><div class="subheader__delivery">Доставка и оплата</div></a>
         <a href="{% url 'sercent' %}"><div class="subheader__service">Сервисный центр</div></a>
@@ -92,30 +92,31 @@
           <div class="footer__first">
             <div class="footer__contacts">
               <div class="footer__h1">Контакты</div>
-              <div class="footer__h2">г.Алматы, ул.Аль-Фараби, 25</div>
+                <a href="https://maps.app.goo.gl/CSkY5FSECkhyjHBZ6"><div class="footer__h2">г.Алматы, ул.Аль-Фараби, 25</div></a>
               <div class="footer__h2"><a href="tel:+ 77777075757">+ 7 ( 777 ) 707-57-57</a></div>
             </div>
             <div class="footer__store">
               <div class="footer__h1">Интернет-магазин</div>
-              <a href="../static/shipping.html"><div class="footer__h2">Доставка и оплата</div></a>
+                <a href="{% url 'shipping' %}"><div class="footer__h2">Доставка и оплата</div></a>
+                <a href="{% url 'sercent' %}"><div class="footer__h2">Сервисный центр</div></a>
             </div>
             <div class="footer__comp">
               <div class="footer__h1">Компания «CMcomp»</div>
-              <a href="/src/about.html"><div class="footer__h2">О нас</div></a>
+              <a href="{% url 'about' %}"><div class="footer__h2">О нас</div></a>
             </div>
             <div class="footer__support">
               <div class="footer__h1">Помощь и поддержка</div>
-              <a href="#"><div class="footer__h2">Адреса и телефоны</div></a>
-              <a href="#"><div class="footer__h2">Написать нам</div></a>
+              <a id="addresses" style="cursor: pointer"><div class="footer__h2">Адреса и телефоны</div></a>
+              <a><div class="footer__h2">Написать нам</div></a>
             </div>
           </div>
           <div class="footer__wrapper">
             <div class="footer__soc">
                 <div class="footer__h1">Мы в соцсетях</div>
                 <div class="footer__icons">
-                  <img src="{% static 'icons/footer/instagram-2-1-logo-svgrepo-com%201.svg' %}" alt="inst">
-                  <img src="{% static 'icons/footer/telegram-logo-svgrepo-com%201.svg' %}" alt="telegram">
-                  <img src="{% static 'icons/footer/whatsapp-icon-logo-svgrepo-com%201.svg' %}" alt="whatsapp">
+                    <a href="https://t.me/+77057729473"><img src="{% static 'icons/footer/instagram-2-1-logo-svgrepo-com%201.svg' %}" alt="inst"></a>
+                    <a href="https://t.me/+77057729473"><img src="{% static 'icons/footer/telegram-logo-svgrepo-com%201.svg' %}" alt="telegram"></a>
+                    <a href="https://wa.me/+77057729473"><img src="{% static 'icons/footer/whatsapp-icon-logo-svgrepo-com%201.svg' %}" alt="whatsapp"></a>
                 </div>
             </div>
             <div class="footer__visa">
@@ -128,6 +129,16 @@
 {% endblock %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 {% block scriptfile %}
+    <script>
+        const scrollButton = document.getElementById('addresses');
+
+        scrollButton.addEventListener('click', () => {
+            // Scroll to a specific position
+            window.location.href = '/about#qwerty'
+            // Alternatively, you can use scrollIntoView
+            // target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    </script>
 {% endblock %}
 </body>
 </html>

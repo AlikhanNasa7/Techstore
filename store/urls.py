@@ -13,6 +13,7 @@ urlpatterns = [
     path('sercent/', views.sercent, name='sercent'),
     #
     path('<str:product_type>/', views.product_type, name='product_type'),
+    path('brand/<str:brand_name>/', views.brands, name='brands'),
 ]
 
 

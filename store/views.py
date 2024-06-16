@@ -7,12 +7,22 @@ from django.http import HttpResponse, JsonResponse
 
 from django.contrib.auth.decorators import login_required
 
-from .models import Product, Cart, CartItem
+from .models import Product, Cart, CartItem, Brand
 from django.core.paginator import Paginator
 
+
 def index(request):
-    products = Product.objects.all()
-    return render(request, 'index.html', {'products': products})
+    new_products = Product.objects.all().order_by('-date_added')[:5]
+    top_products = Product.objects.all().order_by('-purchases')[:5]
+    print(new_products)
+    print(top_products)
+    return render(request, 'index.html', {'new_products': new_products, 'top_products': top_products})
+
+
+def brands(request, brand_name):
+    capitalized_name = brand_name[0].upper() + brand_name[1:]
+    brand_products = Product.objects.filter(brand__name=capitalized_name)
+    return render(request, 'store/brand_products.html', {'brand_products': brand_products, 'brand_name': capitalized_name})
 
 
 def about(request):
@@ -125,9 +135,12 @@ def product_type(request, product_type):
         'peripherals': 'Периферия'
     }
     short_parameters = {
-        'processors': {'show_names': ['Тип процессора','Сокет','Общее количество ядер','Количество потоков','Тактовая частота, ГГц','Микроархитектура'],
-                       'db_names': ['Тип процессора','Сокет','Общее количество ядер','Количество потоков','Тактовая частота, ГГц','Микроархитектура']
-                       },
+        'processors': {
+            'show_names': ['Тип процессора', 'Сокет', 'Общее количество ядер', 'Количество потоков', 'Тактовая частота',
+                           'Микроархитектура'],
+            'db_names': ['Тип процессора', 'Сокет', 'Общее количество ядер', 'Количество потоков', 'Тактовая частота',
+                         'Микроархитектура']
+        },
         'ssd-disks': 'Диски',
         'videocards': 'Видеокарты',
         'motherboards': 'Материнские платы',
@@ -155,6 +168,8 @@ def product_type(request, product_type):
 
     page_range = range(start_page, end_page + 1)
 
+    brands = Product.objects.filter(product_type__name=reformat_type[product_type])
+
     return render(request, 'store/products_by_type.html',
                   {'page_obj': page_obj, 'page_range': page_range, 'title': title, 'parameters': parameters})
 
@@ -172,8 +187,3 @@ def product(request, product_id):
     curr_product = Product.objects.get(id=product.id)
     print(curr_product)
     return render(request, 'store/product.html', {'product': curr_product, 'is_in_cart': is_in_cart})
-
-
-
-
-

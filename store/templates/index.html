@@ -1,4 +1,5 @@
 {% extends 'store/base.html' %}
+{% load custom_tags %}
 {% load static %}
 {% block content %}
   <div class="index__carousel">
@@ -27,256 +28,102 @@
     </div>
   </div>
 
-  <section class="blocks">
+  <section class="blocks" style="height: 1080px">
     <div class="container">
       <div class="blocks__popular">
         <div class="blocks__text">Популярные бренды</div>
         <div class="blocks__brands">
           <div class="el">
-            <a href="#"><img src="../static/icons/blocks/asus-rog-1-logo-svgrepo-com%201.svg" alt="asus"></a>
+            <a href="{% url 'brands' 'asus' %}"><img src="../static/icons/blocks/asus-rog-1-logo-svgrepo-com%201.svg" alt="asus"></a>
           </div>
           <div class="el">
-            <a href="#"><img src="../static/icons/blocks/apple-black-logo-svgrepo-com%201.svg" alt="apple"></a>
+            <a href="{% url 'brands' 'apple' %}"><img src="../static/icons/blocks/apple-black-logo-svgrepo-com%201.svg" alt="apple"></a>
           </div>
           <div class="el">
-            <a href="#"><img src="../static/icons/blocks/Vector%20(1).svg" alt="samsung"></a>
+            <a href="{% url 'brands' 'samsung' %}"><img src="../static/icons/blocks/Vector%20(1).svg" alt="samsung"></a>
           </div>
           <div class="el">
-            <a href="#"><img src="../static/icons/blocks/Vector%20(2).svg" alt="toshiba"></a>
+            <a href="{% url 'brands' 'toshiba' %}"><img src="../static/icons/blocks/Vector%20(2).svg" alt="toshiba"></a>
           </div>
           <div class="el">
-            <a href="#"><img src="../static/icons/blocks/msi-gaming%201.svg" alt="msi"></a>
+            <a href="{% url 'brands' 'MSI' %}"><img src="../static/icons/blocks/msi-gaming%201.svg" alt="msi"></a>
           </div>
         </div>
       </div>
       <div class="blocks__new">
         <div class="blocks__text">Новинки</div>
         <div class="blocks__carousel">
-          <div class="blocks__el">
-            <a href="store/product.html">
-              <div class="blocks__img">
-                <img src="../static/img/main/image%201.png" alt="ryzen">
-              </div>
-              <div class="blocks__h1">
-                Процессор
-              </div>
-              <div class="blocks__h2">
-                AMD Ryzen 9 7900X3D
-              </div>
-            </a>
-            <div class="blocks__purchase">
-              <div class="blocks__price">82 990 ₸</div>
-              <button class="blocks__chosen"><img src="../static/icons/carousel/Vector%201.svg" alt="like"></button>
-              <button">
-                <div class="blocks__basket">
-                  <img src="../static/icons/carousel/cart-commerce-and-shopping-svgrepo-com%201.svg" alt="basket">
+            {% for new_product in new_products %}
+              <div class="blocks__el">
+                <a href="{% url 'product' new_product.id %}">
+                  <div class="blocks__img">
+                    <img src="{{ new_product.image.url }}" alt="{{ top_product.name }}" style="width: 175px">
+                  </div>
+                    <div class="blocks__h1">
+                        {{ new_product.product_type.name }}
+                    </div>
+                  <div class="blocks__h2" style="font-size: 24px">
+                      {% if new_product.product %}
+                      {% else %}
+                      {% endif %}
+                      {{ new_product.name|right_side:1 }}
+                  </div>
+                </a>
+                <div class="blocks__purchase">
+                  <div class="blocks__price">{{ new_product.price }}₸</div>
+                    <form action="{% url 'cart:add-to-favourites' new_product.id %}">
+                        {% csrf_token %}
+                        <button class="blocks__chosen"><img src="../static/icons/carousel/Vector%201.svg" alt="like"></button>
+                    </form>
+                    <form action="{% url 'cart:add-to-cart' new_product.id %}">
+                        {% csrf_token %}
+                        <div class="blocks__basket">
+                            <button style="display: flex; justify-content: center; align-items: center; background-color: inherit; width: 50%">
+                                <img src="../static/icons/carousel/cart-commerce-and-shopping-svgrepo-com%201.svg" alt="basket">
+                            </button>
+                        </div>
+                    </form>
                 </div>
-              </button>
-            </div>
-          </div>
-          <div class="blocks__el">
-            <a href="store/product.html">
-              <div class="blocks__img">
-                <img src="../static/img/main/image%201.png" alt="ryzen">
               </div>
-              <div class="blocks__h1">
-                Процессор
-              </div>
-              <div class="blocks__h2">
-                AMD Ryzen 9 7900X3D
-              </div>
-            </a>
-            <div class="blocks__purchase">
-              <div class="blocks__price">82 990 ₸</div>
-              <button class="blocks__chosen"><img src="../static/icons/carousel/Vector%201.svg" alt="like"></button>
-              <button">
-                <div class="blocks__basket">
-                  <img src="../static/icons/carousel/cart-commerce-and-shopping-svgrepo-com%201.svg" alt="basket">
-                </div>
-              </button>
-            </div>
-          </div>
-          <div class="blocks__el">
-            <a href="store/product.html">
-              <div class="blocks__img">
-                <img src="../static/img/main/image%201.png" alt="ryzen">
-              </div>
-              <div class="blocks__h1">
-                Процессор
-              </div>
-              <div class="blocks__h2">
-                AMD Ryzen 9 7900X3D
-              </div>
-            </a>
-            <div class="blocks__purchase">
-              <div class="blocks__price">82 990 ₸</div>
-              <button class="blocks__chosen"><img src="../static/icons/carousel/Vector%201.svg" alt="like"></button>
-              <button">
-                <div class="blocks__basket">
-                  <img src="../static/icons/carousel/cart-commerce-and-shopping-svgrepo-com%201.svg" alt="basket">
-                </div>
-              </button>
-            </div>
-          </div>
-          <div class="blocks__el">
-            <a href="store/product.html">
-              <div class="blocks__img">
-                <img src="../static/img/main/image%201.png" alt="ryzen">
-              </div>
-              <div class="blocks__h1">
-                Процессор
-              </div>
-              <div class="blocks__h2">
-                AMD Ryzen 9 7900X3D
-              </div>
-            </a>
-            <div class="blocks__purchase">
-              <div class="blocks__price">82 990 ₸</div>
-              <button class="blocks__chosen"><img src="../static/icons/carousel/Vector%201.svg" alt="like"></button>
-              <button">
-                <div class="blocks__basket">
-                  <img src="../static/icons/carousel/cart-commerce-and-shopping-svgrepo-com%201.svg" alt="basket">
-                </div>
-              </button>
-            </div>
-          </div>
-          <div class="blocks__el">
-            <a href="store/product.html">
-              <div class="blocks__img">
-                <img src="../static/img/main/image%201.png" alt="ryzen">
-              </div>
-              <div class="blocks__h1">
-                Процессор
-              </div>
-              <div class="blocks__h2">
-                AMD Ryzen 9 7900X3D
-              </div>
-            </a>
-            <div class="blocks__purchase">
-              <div class="blocks__price">82 990 ₸</div>
-              <button class="blocks__chosen"><img src="../static/icons/carousel/Vector%201.svg" alt="like"></button>
-              <button">
-                <div class="blocks__basket">
-                  <img src="../static/icons/carousel/cart-commerce-and-shopping-svgrepo-com%201.svg" alt="basket">
-                </div>
-              </button>
-            </div>
-          </div>
+            {% endfor %}
         </div>
       </div>
       <div class="blocks__hits">
         <div class="blocks__text">Хиты продаж</div>
         <div class="blocks__carousel">
-          <div class="blocks__el">
-            <a href="store/product.html">
-              <div class="blocks__img">
-                <img src="../static/img/main/image%201.png" alt="ryzen">
-              </div>
-              <div class="blocks__h1">
-                Процессор
-              </div>
-              <div class="blocks__h2">
-                AMD Ryzen 9 7900X3D
-              </div>
-            </a>
-            <div class="blocks__purchase">
-              <div class="blocks__price">82 990 ₸</div>
-              <button class="blocks__chosen"><img src="../static/icons/carousel/Vector%201.svg" alt="like"></button>
-              <button">
-                <div class="blocks__basket">
-                  <img src="../static/icons/carousel/cart-commerce-and-shopping-svgrepo-com%201.svg" alt="basket">
+          {% for top_product in top_products %}
+              <div class="blocks__el">
+                <a href="{% url 'product' top_product.id %}">
+                  <div class="blocks__img">
+                    <img src="{{ top_product.image.url }}" alt="{{ top_product.name }}" style="width: 175px">
+                  </div>
+                    <div class="blocks__h1">
+                        {{ top_product.product_type.name }}
+                    </div>
+                  <div class="blocks__h2" style="font-size: 24px">
+                      {% if top_product.product %}
+                      {% else %}
+                      {% endif %}
+                      {{ top_product.name|right_side:1 }}
+                  </div>
+                </a>
+                <div class="blocks__purchase">
+                  <div class="blocks__price">{{ top_product.price }}₸</div>
+                    <form action="{% url 'cart:add-to-favourites' top_product.id %}">
+                        {% csrf_token %}
+                        <button class="blocks__chosen"><img src="../static/icons/carousel/Vector%201.svg" alt="like"></button>
+                    </form>
+                    <form action="{% url 'cart:add-to-cart' top_product.id %}">
+                        {% csrf_token %}
+                        <div class="blocks__basket">
+                            <button style="display: flex; justify-content: center; align-items: center; background-color: inherit; width: 50%">
+                                <img src="../static/icons/carousel/cart-commerce-and-shopping-svgrepo-com%201.svg" alt="basket">
+                            </button>
+                        </div>
+                    </form>
                 </div>
-              </button>
-            </div>
-          </div>
-          <div class="blocks__el">
-            <a href="store/product.html">
-              <div class="blocks__img">
-                <img src="../static/img/main/image%201.png" alt="ryzen">
               </div>
-              <div class="blocks__h1">
-                Процессор
-              </div>
-              <div class="blocks__h2">
-                AMD Ryzen 9 7900X3D
-              </div>
-            </a>
-            <div class="blocks__purchase">
-              <div class="blocks__price">82 990 ₸</div>
-              <button class="blocks__chosen"><img src="../static/icons/carousel/Vector%201.svg" alt="like"></button>
-              <button">
-                <div class="blocks__basket">
-                  <img src="../static/icons/carousel/cart-commerce-and-shopping-svgrepo-com%201.svg" alt="basket">
-                </div>
-              </button>
-            </div>
-          </div>
-          <div class="blocks__el">
-            <a href="store/product.html">
-              <div class="blocks__img">
-                <img src="../static/img/main/image%201.png" alt="ryzen">
-              </div>
-              <div class="blocks__h1">
-                Процессор
-              </div>
-              <div class="blocks__h2">
-                AMD Ryzen 9 7900X3D
-              </div>
-            </a>
-            <div class="blocks__purchase">
-              <div class="blocks__price">82 990 ₸</div>
-              <button class="blocks__chosen"><img src="../static/icons/carousel/Vector%201.svg" alt="like"></button>
-              <button">
-                <div class="blocks__basket">
-                  <img src="../static/icons/carousel/cart-commerce-and-shopping-svgrepo-com%201.svg" alt="basket">
-                </div>
-              </button>
-            </div>
-          </div>
-          <div class="blocks__el">
-            <a href="store/product.html">
-              <div class="blocks__img">
-                <img src="../static/img/main/image%201.png" alt="ryzen">
-              </div>
-              <div class="blocks__h1">
-                Процессор
-              </div>
-              <div class="blocks__h2">
-                AMD Ryzen 9 7900X3D
-              </div>
-            </a>
-            <div class="blocks__purchase">
-              <div class="blocks__price">82 990 ₸</div>
-              <button class="blocks__chosen"><img src="../static/icons/carousel/Vector%201.svg" alt="like"></button>
-              <button">
-                <div class="blocks__basket">
-                  <img src="../static/icons/carousel/cart-commerce-and-shopping-svgrepo-com%201.svg" alt="basket">
-                </div>
-              </button>
-            </div>
-          </div>
-          <div class="blocks__el">
-            <a href="store/product.html">
-              <div class="blocks__img">
-                <img src="../static/img/main/image%201.png" alt="ryzen">
-              </div>
-              <div class="blocks__h1">
-                Процессор
-              </div>
-              <div class="blocks__h2">
-                AMD Ryzen 9 7900X3D
-              </div>
-            </a>
-            <div class="blocks__purchase">
-              <div class="blocks__price">82 990 ₸</div>
-              <button class="blocks__chosen"><img src="../static/icons/carousel/Vector%201.svg" alt="like"></button>
-              <button">
-                <div class="blocks__basket">
-                  <img src="../static/icons/carousel/cart-commerce-and-shopping-svgrepo-com%201.svg" alt="basket">
-                </div>
-              </button>
-            </div>
-          </div>
+            {% endfor %}
         </div>
       </div>
     </div>

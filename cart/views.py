@@ -72,7 +72,7 @@ def remove_from_favourites(request, product_id):
     favourite_item = get_object_or_404(FavouriteItem, favourites_list=user_favourites, product_id=product_id)
     favourite_item.delete()
     messages.success(request, f'Removed {favourite_item.product.name} from your favourites.')
-    return redirect('favourites_detail')
+    return redirect('cart:favourites_detail')
 
 
 @login_required(login_url='account:user-login')

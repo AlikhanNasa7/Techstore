@@ -45,7 +45,10 @@
                         </div>
                         <div class="goods__blue">
                             <div class="blue__chosen">
-                                <button><img src="../../static/icons/chosen/Vector_3.svg" alt="like"></button>
+                                <form method="POST" action="{% url 'cart:favourites-remove' favourite_item.product.id %}">
+                                    {% csrf_token %}
+                                    <button><img src="../../static/icons/chosen/Vector_3.svg" alt="like"></button>
+                                </form>
                             </div>
                             <div class="blue__avail">
                                 ✓  В наличии
@@ -65,10 +68,13 @@
                                         <img src="../../static/icons/proc/basket-commerce-and-shopping-svgrepo-com%201.svg" alt="one">
                                         <div class="button_text">В один клик</div>
                                     </button>
-                                    <button class="blue__basket">
-                                        <img src="../../static/icons/proc/cart-commerce-and-shopping-svgrepo-com%201%20(1).svg" alt="cart">
-                                        <div class="button__text">В коризну</div>
-                                    </button>
+                                    <form action="{% url 'cart:add-to-cart' favourite_item.product.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button class="blue__basket">
+                                            <img src="../../static/icons/proc/cart-commerce-and-shopping-svgrepo-com%201%20(1).svg" alt="cart">
+                                            <div class="button__text">В коризну</div>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

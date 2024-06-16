@@ -112,7 +112,11 @@
                                             </div>
                                             <div class="goods__data">
                                                 {% for parameter in parameters.db_names %}
-                                                    <div class="data__data">{{ product.parameter }}</div>
+                                                    {% for product_value in product.product_values.all %}
+                                                        {% if product_value.attribute.name == parameter %}
+                                                            <div class="data__data">{{ product_value.value }}</div>
+                                                        {% endif %}
+                                                    {% endfor %}
                                                 {% endfor %}
                                             </div>
                                         </div>

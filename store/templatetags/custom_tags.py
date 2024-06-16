@@ -8,3 +8,10 @@ def mul(value, arg):
         return value * arg
     except (ValueError, TypeError):
         return ''
+
+@register.filter
+def right_side(value, arg):
+    try:
+        return ' '.join(value.split(' ')[arg:])
+    except (ValueError, TypeError):
+        return ''

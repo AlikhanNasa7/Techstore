@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 
 import cart
 
-
 # Create your models here.
+from django.utils import timezone
 
 
 class ProductType(models.Model):
@@ -25,6 +25,17 @@ class Product(models.Model):
     image = models.ImageField(upload_to='products/', blank=True, null=True)
     availability = models.BooleanField(default=True)
     product_type = models.ForeignKey(ProductType, on_delete=models.CASCADE, related_name='products')
+    date_added = models.DateTimeField(default=timezone.now)
+    purchases = models.PositiveIntegerField(default=0)
+    brand = models.ForeignKey('Brand', on_delete=models.CASCADE, related_name='products', null=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Brand(models.Model):
+    name = models.CharField(max_length=100)
+    created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.name
@@ -32,7 +43,7 @@ class Product(models.Model):
 
 class ProductAttribute(models.Model):
     name = models.CharField(max_length=100)
-    product_type = models.ForeignKey(ProductType, on_delete=models.CASCADE)
+    product_type = models.ForeignKey(ProductType, on_delete=models.CASCADE, related_name='attributes')
 
     def __str__(self):
         return self.name

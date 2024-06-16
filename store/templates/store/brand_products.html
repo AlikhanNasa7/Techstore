@@ -1,0 +1,96 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block content %}
+        <section class="proc">
+            <div class="container">
+                <h1>{{ brand_name }}</h1>
+                <div class="proc__wrapper" style="margin: auto">
+                    <div class="proc__goods" style="margin: auto">
+                        {% for product in brand_products %}
+                        <div class="goods__el" style="margin-inline: auto">
+                            <div class="goods__white" style="width: 55%">
+                                <a href="{% url 'product' product_id=product.id %}">
+                                    <div class="goods__img" style="display: flex; justify-content: center; align-items: center"><img src="{{ product.image.url }}" alt="proc" style="width: 175px"></div>
+                                    <div class="goods__descr">
+                                        <div class="goods__name">{{ product.name}}</div>
+                                        <div class="goods__wrapper">
+                                            <div class="goods__param">
+                                                {% for parameter in parameters.show_names %}
+                                                    <div class="param">
+                                                        <div class="param__cell">{{ parameter }}</div>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                            <div class="goods__data">
+                                                {% for parameter in parameters.db_names %}
+                                                    {% for product_value in product.product_values.all %}
+                                                        {% if product_value.attribute.name == parameter %}
+                                                            <div class="data__data">{{ product_value.value }}</div>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="goods__blue" style="width: 45%">
+                                <div class="blue__chosen">
+                                    <form action="{% url 'cart:add-to-favourites' product.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <button><img src="{% static 'icons/proc/Vector_4.svg' %}" alt="like"></button>
+                                    </form>
+                                </div>
+                                <div class="blue__avail">
+                                    ✓  В наличии
+                                </div>
+                                <div class="blue__selfdel">
+                                    <img src="{% static 'icons/proc/purchase-cash-register-svgrepo-com%201.svg' %}" alt="purch" class="blue__img">
+                                    <div class="blue__text">Самовывоз: сегодня</div>
+                                </div>
+                                <div class="blue__del">
+                                    <img src="{% static 'icons/proc/delivery-shipping-and-delivery-svgrepo-com%202.svg' %}" alt="del" class="blue__img">
+                                    <div class="blue__text">Доставка: завтра</div>
+                                </div>
+                                <div class="blue__buy">
+                                    <div class="blue__price">{{ product.price }} ₸</div>
+                                    <div class="blue__buttons">
+                                        <button class="blue__oneclick">
+                                            <img src="../../static/icons/proc/basket-commerce-and-shopping-svgrepo-com%201.svg" alt="one">
+                                            <div class="button_text">В один клик</div>
+                                        </button>
+                                        <form action="{% url 'cart:add-to-cart' product.id %}" method="POST">
+                                            {% csrf_token %}
+                                            <button class="blue__basket">
+                                                <img src="{% static 'icons/proc/cart-commerce-and-shopping-svgrepo-com%201%20(1).svg' %}" alt="cart">
+                                                <div class="button__text">В коризну</div>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% empty %}
+                            <h2 style="color: white">Нет товаров {{ brand_name }}</h2>
+                        {% endfor %}
+
+                        <div class="proc__links">
+
+                            {% for page_num in page_range %}
+                                {% if page_num == page_obj.number %}
+                                    <span class="current">
+                                        <div class="links__pagenmb">{{ page_num }}</div>
+                                    </span>
+                                {% else %}
+                                    <a href="?page={{ page_num }}">
+                                        <div class="links__pagenmb">{{ page_num }}</div>
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+
+                        </div>
+                    </div>           
+                </div>
+            </div>
+        </section>
+{% endblock %}
