@@ -4,7 +4,7 @@
     <div class="container">
         <div class="sercent__h1">Вас приветствует <br> сервисный центр SMcomp</div>
         <div class="sercent__wrapper">
-            <div class="form__button"><button>Оставить заявку</button></div>
+            <div class="form__button"><button onclick="scrollToContacts()">Оставить заявку</button></div>
             <div class="sercent__img"><img src="../../static/img/sercent/3d-computer-icons-png%201.png" alt=""></div>
             <div class="sercent__color">
                 <div class="sercent__color1">
@@ -82,7 +82,7 @@
           </div>
         </div>
 
-        <div class="sercent__contact">
+        <div class="sercent__contact" id="contacts_form">
             <div class="contact__h1">Контактная информация</div>
             <div class="contact__wrapper">
                 <div class="contact__map">
@@ -91,9 +91,12 @@
                 
                 <div class="contact__form">
                     <div class="form__h1">Оставить заявку</div>
-                    <div class="form__name">Имя</div>
-                    <div class="form__tel">Номер телефона</div>
-                    <div class="form__button"><button>Оставить заявку</button></div>
+                    <form action="{% url 'sercent' %}" method="post" style="display: flex;flex-direction: column;justify-content: center;align-items: center">
+                        {% csrf_token %}
+                        {{ form.name }}
+                        {{ form.phone_number }}
+                        <div class="form__button" id="send-contact"><button type="submit">Оставить заявку</button></div>
+                    </form>
                     <div class="form__line"></div>
                     <div class="form__contactus">Или напишите нам</div>
                     <div class="form__btn"><button><img src="../../static/icons/sercent/Group%20(1).svg" alt="">WhatsApp</button></div>
@@ -103,4 +106,16 @@
     </div>
   </section>
 
+{% endblock %}
+
+{% block scriptfile %}
+    <script>
+        function scrollToContacts(){
+            const target = document.querySelector('#contacts_form');
+            console.log(target)
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    </script>
 {% endblock %}

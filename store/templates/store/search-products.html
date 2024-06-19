@@ -3,10 +3,10 @@
 {% block content %}
         <section class="proc">
             <div class="container">
-                <h1>Товары {{ brand_name }}</h1>
+                <h1>Результаты по поиску "{{ search }}"</h1>
                 <div class="proc__wrapper" style="margin: auto">
                     <div class="proc__goods" style="margin: auto">
-                        {% for product in products %}
+                        {% for product in search_products %}
                         <div class="goods__el" style="margin-inline: auto">
                             <div class="goods__white" style="width: 55%">
                                 <a href="{% url 'product' product_id=product.id %}">

@@ -37,9 +37,9 @@
             <img src="../../static/icons/header/cpu-setting-svgrepo-com%201.svg" alt="logo" class="header__logo">
             <div class="header__SM">SM comp</div>
           </a>
-          <div class="header__search">
-            Поиск товаров
-            <img src="../../static/icons/header/glass.svg" alt="glass" class="header__glass">
+          <div class="header__search" style="display: flex; justify-content: space-between" id="search-product">
+              <input placeholder="Поиск товаров" style="width: 80%; outline: 0; border: 0" id="product-info"/>
+              <img id="product-search" src="../../static/icons/header/glass.svg" alt="glass" class="header__glass" style="margin: 0; cursor: pointer">
           </div>
           <a href="{% url 'cart:favourites_detail' %}">
             <div class="header__chosen">
@@ -93,7 +93,7 @@
             <div class="footer__contacts">
               <div class="footer__h1">Контакты</div>
                 <a href="https://maps.app.goo.gl/CSkY5FSECkhyjHBZ6"><div class="footer__h2">г.Алматы, ул.Аль-Фараби, 25</div></a>
-              <div class="footer__h2"><a href="tel:+ 77777075757">+ 7 ( 777 ) 707-57-57</a></div>
+              <div class="footer__h2"><a href="tel:+77777075757">+ 7 ( 777 ) 707-57-57</a></div>
             </div>
             <div class="footer__store">
               <div class="footer__h1">Интернет-магазин</div>
@@ -114,9 +114,9 @@
             <div class="footer__soc">
                 <div class="footer__h1">Мы в соцсетях</div>
                 <div class="footer__icons">
-                    <a href="https://t.me/+77057729473"><img src="{% static 'icons/footer/instagram-2-1-logo-svgrepo-com%201.svg' %}" alt="inst"></a>
-                    <a href="https://t.me/+77057729473"><img src="{% static 'icons/footer/telegram-logo-svgrepo-com%201.svg' %}" alt="telegram"></a>
-                    <a href="https://wa.me/+77057729473"><img src="{% static 'icons/footer/whatsapp-icon-logo-svgrepo-com%201.svg' %}" alt="whatsapp"></a>
+                    <a href="https://t.me/+77057729473" target="_blank"><img src="{% static 'icons/footer/instagram-2-1-logo-svgrepo-com%201.svg' %}" alt="inst"></a>
+                    <a href="https://t.me/+77057729473" target="_blank"><img src="{% static 'icons/footer/telegram-logo-svgrepo-com%201.svg' %}" alt="telegram"></a>
+                    <a href="https://wa.me/+77057729473" target="_blank"><img src="{% static 'icons/footer/whatsapp-icon-logo-svgrepo-com%201.svg' %}" alt="whatsapp"></a>
                 </div>
             </div>
             <div class="footer__visa">
@@ -138,6 +138,16 @@
             // Alternatively, you can use scrollIntoView
             // target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
+
+        const search_product = document.getElementById('product-search')
+        const productInfo = document.getElementById('product-info')
+
+        search_product.addEventListener('click', (e) => {
+            e.preventDefault()
+            const product_str = productInfo.value
+            window.location.href = `{% url 'search_product' %}?search=${product_str}`
+        });
+
     </script>
 {% endblock %}
 </body>

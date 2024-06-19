@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from store.models import Application
 
 
 #now forms from account_app are used
@@ -26,3 +27,13 @@ class UserRegistrationForm(forms.Form):
             raise forms.ValidationError('Passwords must match')
 
         return password2
+
+
+class ApplicationForm(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form__name', 'placeholder': 'Имя'}))
+    phone_number = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form__tel', 'placeholder': 'Номер телефона'}))
+
+    class Meta:
+        model = Application
+        fields = ['name', 'phone_number']

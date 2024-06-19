@@ -6,93 +6,263 @@
                 <h1>{{ title }}</h1>
                 <div class="proc__wrapper">
                     <div class="proc__filter">
+                        {% if product_type == 'processors' %}
                         <div class="filter__company">
                             <div class="filter__name">Производители</div>
                             <div class="filter__data">
-                                <div class="filter__check"></div>
-                                <div class="filter__text">AMD</div>    
+                                <a class="filter__check" href="?made_by=AMD"></a>
+                                <div class="filter__text" >AMD</div>
                             </div>
                             <div class="filter__data">
-                                <div class="filter__check"></div>
-                                <div class="filter__text">Intel</div>    
+                                <a class="filter__check" href="?made_by=Intel"></a>
+                                <div class="filter__text">Intel</div>
                             </div>
                         </div>
 
                         <div class="proc__type">
                             <div class="filter__name">Тип процессора</div>
                             <div class="filter__data">
-                                <div class="filter__check"></div>
-                                <div class="filter__text">Ryzen 3</div>    
+                                <a class="filter__check" href="?processor_type=Ryzen 3"></a>
+                                <div class="filter__text">Ryzen 3</div>
                             </div>
                             <div class="filter__data">
-                                <div class="filter__check"></div>
-                                <div class="filter__text">Ryzen 5</div>    
+                                <a class="filter__check" href="?processor_type=Ryzen 5"></a>
+                                <div class="filter__text">Ryzen 5</div>
                             </div>
                             <div class="filter__data">
-                                <div class="filter__check"></div>
-                                <div class="filter__text">Ryzen 7</div>    
+                                <a class="filter__check" href="?processor_type=Ryzen 7"></a>
+                                <div class="filter__text">Ryzen 7</div>
                             </div>
                             <div class="filter__data">
-                                <div class="filter__check"></div>
-                                <div class="filter__text">Core i3</div>    
+                                <a class="filter__check" href="?processor_type=Core i3"></a>
+                                <div class="filter__text">Core i3</div>
                             </div>
                             <div class="filter__data">
-                                <div class="filter__check"></div>
-                                <div class="filter__text">Core i5</div>    
+                                <a class="filter__check" href="?processor_type=Core i5"></a>
+                                <div class="filter__text">Core i5</div>
                             </div>
                             <div class="filter__data">
-                                <div class="filter__check"></div>
-                                <div class="filter__text">Core i7</div>    
+                                <a class="filter__check" href="?processor_type=Core i7"></a>
+                                <div class="filter__text">Core i7</div>
                             </div>
                         </div>
 
-                        <div class="proc__core">
+                        <div class="proc__core" style="height: fit-content">
                             <div class="filter__name">Общее количество ядер</div>
                             <div class="filter__data">
-                                <div class="filter__check"></div>
-                                <div class="filter__text">2</div>    
+                                <a class="filter__check" href="?core_quantity=2"></a>
+                                <div class="filter__text">2</div>
                             </div>
                             <div class="filter__data">
-                                <div class="filter__check"></div>
-                                <div class="filter__text">4</div>    
+                                <a class="filter__check" href="?core_quantity=4"></a>
+                                <div class="filter__text">4</div>
                             </div>
                             <div class="filter__data">
-                                <div class="filter__check"></div>
-                                <div class="filter__text">6</div>    
+                                <a class="filter__check" href="?core_quantity=6"></a>
+                                <div class="filter__text">6</div>
                             </div>
                             <div class="filter__data">
-                                <div class="filter__check"></div>
-                                <div class="filter__text">7</div>    
+                                <a class="filter__check" href="?core_quantity=7"></a>
+                                <div class="filter__text">7</div>
                             </div>
                             <div class="filter__data">
-                                <div class="filter__check"></div>
-                                <div class="filter__text">8</div>    
+                                <a class="filter__check" href="?core_quantity=8"></a>
+                                <div class="filter__text">8</div>
+                            </div>
+                            <div class="filter__data">
+                                <a class="filter__check" href="?core_quantity=10"></a>
+                                <div class="filter__text">10</div>
+                            </div>
+                            <div class="filter__data">
+                                <a class="filter__check" href="?core_quantity=12"></a>
+                                <div class="filter__text">12</div>
+                            </div>
+                            <div class="filter__data">
+                                <a class="filter__check" href="?core_quantity=14"></a>
+                                <div class="filter__text">14</div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if product_type == 'ssd-disks' %}
+                            <div class="filter__company">
+                                <div class="filter__name">Производители</div>
+                                <div class="filter__data">
+                                    <a class="filter__check" href="?made_by=Samsung"></a>
+                                    <div class="filter__text" >Samsung</div>
+                                </div>
+                                <div class="filter__data">
+                                    <a class="filter__check" href="?made_by=Kingston"></a>
+                                    <div class="filter__text">Kingston</div>
+                                </div>
+                            </div>
+
+                            <div class="proc__type" style="height: fit-content">
+                                <div class="filter__name">Обьем накопителя</div>
+                                <div class="filter__data">
+                                    <a class="filter__check" href="?storage_capacity=500GB"></a>
+                                    <div class="filter__text">500 ГБ</div>
+                                </div>
+                                <div class="filter__data">
+                                    <a class="filter__check" href="?storage_capacity=1TB"></a>
+                                    <div class="filter__text">1 ТБ</div>
+                                </div>
+                                <div class="filter__data">
+                                    <a class="filter__check" href="?storage_capacity=2TB"></a>
+                                    <div class="filter__text">2 ТБ</div>
+                                </div>
+                                <div class="filter__data">
+                                    <a class="filter__check" href="?storage_capacity=4TB"></a>
+                                    <div class="filter__text">4 ТБ</div>
+                                </div>
+                            </div>
+
+                            <div class="proc__core" style="height: fit-content">
+                                <div class="filter__name">DRAM Буфер</div>
+                                <div class="filter__data">
+                                    <a class="filter__check" href="?has_dram=1"></a>
+                                    <div class="filter__text">Есть</div>
+                                </div>
+                                <div class="filter__data">
+                                    <a class="filter__check" href="?has_dram=0"></a>
+                                    <div class="filter__text">Нет</div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if product_type == 'videocards' %}
+                        <div class="filter__company">
+                            <div class="filter__name">Производители</div>
+                            <div class="filter__data">
+                                <a class="filter__check" href="?made_by=Asus"></a>
+                                <div class="filter__text" >Asus</div>
+                            </div>
+                            <div class="filter__data">
+                                <a class="filter__check" href="?made_by=MSI"></a>
+                                <div class="filter__text">MSI</div>
                             </div>
                         </div>
 
-                        <div class="proc__power">
-                            <div class="filter__name">Расчетная мощность (TDP)</div>
+                        <div class="proc__type" style="height: fit-content">
+                            <div class="filter__name">Производители графического процессора</div>
                             <div class="filter__data">
-                                <div class="filter__check"></div>
-                                <div class="filter__text">35 Вт</div>    
+                                <a class="filter__check" href="?graphic_processor_made_by=NVIDIA"></a>
+                                <div class="filter__text">NVIDIA</div>
                             </div>
                             <div class="filter__data">
-                                <div class="filter__check"></div>
-                                <div class="filter__text">45 Вт</div>    
-                            </div>
-                            <div class="filter__data">
-                                <div class="filter__check"></div>
-                                <div class="filter__text">51 Вт</div>    
-                            </div>
-                            <div class="filter__data">
-                                <div class="filter__check"></div>
-                                <div class="filter__text">58 Вт</div>    
-                            </div>
-                            <div class="filter__data">
-                                <div class="filter__check"></div>
-                                <div class="filter__text">60 Вт</div>    
+                                <a class="filter__check" href="?graphic_processor_made_by=AMD"></a>
+                                <div class="filter__text">AMD</div>
                             </div>
                         </div>
+
+                        <div class="proc__core" style="height: fit-content">
+                            <div class="filter__name">Графический процессор</div>
+                            <div class="filter__data">
+                                <a class="filter__check" href="?graphic_processor=RTX 4080 SUPER"></a>
+                                <div class="filter__text">RTX 4080 SUPER</div>
+                            </div>
+                            <div class="filter__data">
+                                <a class="filter__check" href="?graphic_processor=RTX 4070"></a>
+                                <div class="filter__text">RTX 4070</div>
+                            </div>
+                            <div class="filter__data">
+                                <a class="filter__check" href="?graphic_processor=RTX 4060 TI"></a>
+                                <div class="filter__text">RTX 4060 TI</div>
+                            </div>
+                            <div class="filter__data">
+                                <a class="filter__check" href="?graphic_processor=RTX 4060"></a>
+                                <div class="filter__text">RTX 4060</div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if product_type == 'motherboards' %}
+                        <div class="filter__company">
+                            <div class="filter__name">Производители</div>
+                            <div class="filter__data">
+                                <a class="filter__check" href="?made_by=Asus"></a>
+                                <div class="filter__text" >Asus</div>
+                            </div>
+                            <div class="filter__data">
+                                <a class="filter__check" href="?made_by=MSI"></a>
+                                <div class="filter__text">MSI</div>
+                            </div>
+                        </div>
+
+                        <div class="proc__type" style="height: fit-content">
+                            <div class="filter__name">Сокет</div>
+                            <div class="filter__data">
+                                <a class="filter__check" href="?socket=AM4"></a>
+                                <div class="filter__text">AM4</div>
+                            </div>
+                            <div class="filter__data">
+                                <a class="filter__check" href="?socket=AM5"></a>
+                                <div class="filter__text">AM5</div>
+                            </div>
+                            <div class="filter__data">
+                                <a class="filter__check" href="?socket=LGA1700"></a>
+                                <div class="filter__text">LGA1700</div>
+                            </div>
+                            <div class="filter__data">
+                                <a class="filter__check" href="?socket=LGA1200"></a>
+                                <div class="filter__text">LGA1200</div>
+                            </div>
+                        </div>
+
+                        <div class="proc__core" style="height: fit-content">
+                            <div class="filter__name">Тип поддерживаемой памяти</div>
+                            <div class="filter__data">
+                                <a class="filter__check" href="?memory_type=DDR4"></a>
+                                <div class="filter__text">DDR4</div>
+                            </div>
+                            <div class="filter__data">
+                                <a class="filter__check" href="?memory_type=DDR5"></a>
+                                <div class="filter__text">DDR5</div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if product_type == 'power-supplies' %}
+                        <div class="filter__company">
+                            <div class="filter__name">Производители</div>
+                            <div class="filter__data">
+                                <a class="filter__check" href="?made_by=Asus"></a>
+                                <div class="filter__text" >Asus</div>
+                            </div>
+                            <div class="filter__data">
+                                <a class="filter__check" href="?made_by=MSI"></a>
+                                <div class="filter__text">MSI</div>
+                            </div>
+                        </div>
+
+                        <div class="proc__type" style="height: fit-content">
+                            <div class="filter__name">Мощность (номинал) (Bt)</div>
+                            <div class="filter__data">
+                                <a class="filter__check" href="?power-supply_power=1"></a>
+                                <div class="filter__text">Менее 500</div>
+                            </div>
+                            <div class="filter__data">
+                                <a class="filter__check" href="?power-supply_power=2"></a>
+                                <div class="filter__text">501-1000</div>
+                            </div>
+                            <div class="filter__data">
+                                <a class="filter__check" href="?power-supply_power=3"></a>
+                                <div class="filter__text">1001-1500</div>
+                            </div>
+                        </div>
+
+                        <div class="proc__core" style="height: fit-content">
+                            <div class="filter__name">Форм-фактор</div>
+                            <div class="filter__data">
+                                <a class="filter__check" href="?form-factor=ATX"></a>
+                                <div class="filter__text">ATX</div>
+                            </div>
+                            <div class="filter__data">
+                                <a class="filter__check" href="?form-factor=FlexATX"></a>
+                                <div class="filter__text">FlexATX</div>
+                            </div>
+                            <div class="filter__data">
+                                <a class="filter__check" href="?form-factor=SFX"></a>
+                                <div class="filter__text">SFX</div>
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>
                     <div class="proc__goods">
                         {% for product in page_obj %}
@@ -142,7 +312,7 @@
                                     <div class="blue__text">Доставка: завтра</div>
                                 </div>
                                 <div class="blue__buy">
-                                    <div class="blue__price">{{ product.price }} ₸</div>
+                                    <div class="blue__price">{{ product.price }}₸</div>
                                     <div class="blue__buttons">
                                         <button class="blue__oneclick">
                                             <img src="../static/icons/proc/basket-commerce-and-shopping-svgrepo-com%201.svg" alt="one">
